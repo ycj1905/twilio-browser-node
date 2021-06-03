@@ -84,7 +84,17 @@ function onListening() {
 
 var mongoConnection = process.env.DOCKER_MONGO || "localhost"
 
-mongoose.connect('mongodb://'+mongoConnection+'/browser-calls', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb://'+mongoConnection+'/browser-calls', { useNewUrlParser: true, useUnifiedTopology: true });
+const { MongoMemoryServer } = require('mongodb-memory-server');
+
+const mongod = new MongoMemoryServer();
+
+const mongooseOpts = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+};
+
+(async () => await mongoose.connect(await mongod.getUri(), mongooseOpts))();
 mongoose.Promise = Promise;
 
 
