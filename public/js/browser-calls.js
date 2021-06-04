@@ -37,6 +37,8 @@ $(document).ready(function() {
         // the `Dial` verb answers.
         enableRingingState: true
       });
+      window.matt = device;
+      console.log('Twilio Supported: ', Twilio.Device.isSupported);
 
       device.on("ready", function(device) {
         console.log("Twilio.Device Ready!");
