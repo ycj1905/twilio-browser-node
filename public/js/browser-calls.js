@@ -15,7 +15,7 @@ function updateCallStatus(status) {
   callStatus.text(status);
 }
 
-console.log("Requesting Access Token...");
+console.log("Requesting Access Token2...");
 $(document).ready(function() {
   $.post("/token/generate", {page: window.location.pathname})
     .then(function(data){
